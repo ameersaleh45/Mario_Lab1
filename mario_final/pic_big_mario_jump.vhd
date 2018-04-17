@@ -1,0 +1,87 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity pic_big_mario_jump is
+port(
+	  ADDR    : in integer range 0 to 2047;
+	  Q       : out std_logic_vector(7 downto 0)
+);
+end pic_big_mario_jump;
+
+architecture arch of pic_big_mario_jump is
+
+type matrix is array(0 to 2047) of std_logic_vector(7 downto 0);
+
+constant big_mario_jump : matrix := ( 
+
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"13", X"13", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"13", X"13", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", 
+X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"13", X"13", 
+X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"13", X"13", X"13", X"13", 
+X"13", X"13", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"F0", X"F0", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"F0", X"F0", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"F0", X"F0", X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"AC", X"AC", 
+X"F0", X"F0", X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"AC", X"AC", 
+X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"F0", X"F0", X"F0", X"F0", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"13", X"13", X"13", X"13", X"13", X"13", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"E4", X"E4", X"E4", X"E4", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"AC", X"AC", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"E4", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"AC", X"AC", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", 
+X"AC", X"AC", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13", X"13"
+							  );
+begin
+
+	Q <= big_mario_jump(ADDR);		
+			
+end arch;

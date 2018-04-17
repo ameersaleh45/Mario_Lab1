@@ -1,0 +1,198 @@
+ 
+
+   set_location_assignment	PIN_G26  -to RESETn  ;# KEY0				;#	Global reset to FPGA
+  
+   set_location_assignment PIN_AF10 -to scoreL[6]   ;# a HEX0S[6]
+   set_location_assignment PIN_AB12 -to scoreL[5]   ;# b HEX0S[5]
+   set_location_assignment PIN_AC12 -to scoreL[4]   ;# c HEX0S[4]
+   set_location_assignment PIN_AD11 -to scoreL[3]   ;# d HEX0S[3]
+   set_location_assignment PIN_AE11 -to scoreL[2]   ;# e HEX0S[2]
+   set_location_assignment PIN_V14  -to scoreL[1]   ;# f HEX0S[1]
+   set_location_assignment PIN_V13  -to scoreL[0]   ;# g HEX0S[0]
+
+   set_location_assignment PIN_V20  -to scoreH[6]   ;# a HEX1S[6]
+   set_location_assignment PIN_V21  -to scoreH[5]   ;# b HEX1S[5]
+   set_location_assignment PIN_W21  -to scoreH[4]   ;# c HEX1S[4]
+   set_location_assignment PIN_Y22  -to scoreH[3]   ;# d HEX1S[3]
+   set_location_assignment PIN_AA24 -to scoreH[2]   ;# e HEX1S[2]
+   set_location_assignment PIN_AA23 -to scoreH[1]   ;# f HEX1S[1]
+   set_location_assignment PIN_AB24 -to scoreH[0]   ;# g HEX1S[0]
+
+   set_location_assignment PIN_AB23 -to C[6]   ;# a HEX2S[6]
+   set_location_assignment PIN_V22  -to C[5]   ;# b HEX2S[5]
+   set_location_assignment PIN_AC25 -to C[4]   ;# c HEX2S[4]
+   set_location_assignment PIN_AC26 -to C[3]   ;# d HEX2S[3]
+   set_location_assignment PIN_AB26 -to C[2]   ;# e HEX2S[2]
+   set_location_assignment PIN_AB25 -to C[1]   ;# f HEX2S[1]
+   set_location_assignment PIN_Y24  -to C[0]   ;# g HEX2S[0]
+
+   set_location_assignment PIN_Y23  -to S[6]   ;# a HEX3S[6]
+   set_location_assignment PIN_AA25 -to S[5]   ;# b HEX3S[5]
+   set_location_assignment PIN_AA26 -to S[4]   ;# c HEX3S[4]
+   set_location_assignment PIN_Y26  -to S[3]   ;# d HEX3S[3]
+   set_location_assignment PIN_Y25  -to S[2]   ;# e HEX3S[2]
+   set_location_assignment PIN_U22  -to S[1]   ;# f HEX3S[1]
+   set_location_assignment PIN_W24  -to S[0]   ;# g HEX3S[0]
+
+
+   set_location_assignment PIN_K25  -to PDAC_A_DATA_CHIP[0] ;#GPIO_1[0]	;# DAC_A DATA0 
+
+   set_location_assignment PIN_K26  -to PDAC_A_DATA_CHIP[1]	;#GPIO_1[1]	;# DAC_A DATA1
+
+   set_location_assignment PIN_M22  -to PDAC_A_DATA_CHIP[2]	;#GPIO_1[2]	;# DAC_A DATA2
+
+   set_location_assignment PIN_M23  -to PDAC_A_DATA_CHIP[3]	;#GPIO_1[3]	;# DAC_A DATA3
+
+   set_location_assignment PIN_M19  -to PDAC_A_DATA_CHIP[4]	;#GPIO_1[4]	;# DAC_A DATA4
+
+   set_location_assignment PIN_M20  -to PDAC_A_DATA_CHIP[5]	;#GPIO_1[5]	;# DAC_A DATA5
+#  set_location_assignment PIN_M20  -to JP2_PIN6
+   ;# pin 7  (left)
+   set_location_assignment PIN_N20  -to PDAC_A_DATA_CHIP[6]	;#GPIO_1[6]	;# DAC_A DATA6
+#  set_location_assignment PIN_N20  -to JP2_PIN7
+   ;# pin 8  (right)
+   set_location_assignment PIN_M21  -to PDAC_A_DATA_CHIP[7]	;#GPIO_1[7]	;# DAC_A DATA7
+#  set_location_assignment PIN_M21  -to JP2_PIN8
+   ;# pin 9  (left)
+   set_location_assignment PIN_M24  -to PDAC_B_DATA_CHIP[0]	;#GPIO_1[8]	;# DAC_B DATA0
+#  set_location_assignment PIN_M24  -to JP2_PIN9
+   ;# pin 10 (right)
+   set_location_assignment PIN_M25  -to PDAC_B_DATA_CHIP[1]	;#GPIO_1[9]	;# DAC_B DATA1
+#  set_location_assignment PIN_M25  -to JP2_PIN10
+
+   
+   ;# pin 13 (left)
+   set_location_assignment PIN_N24  -to PDAC_B_DATA_CHIP[2]	;#GPIO_1[10]	;# DAC_B DATA2
+#  set_location_assignment PIN_N24  -to JP2_PIN13
+   ;# pin 14 (right)
+   set_location_assignment PIN_P24  -to PDAC_B_DATA_CHIP[3]	;#GPIO_1[11]	;# DAC_B DATA3
+#  set_location_assignment PIN_P24  -to JP2_PIN14
+   ;# pin 15 (left)
+   set_location_assignment PIN_R25  -to PDAC_B_DATA_CHIP[4]	;#GPIO_1[12]	;# DAC_B DATA4
+#  set_location_assignment PIN_R25  -to JP2_PIN15
+   ;# pin 16 (right)
+   set_location_assignment PIN_R24  -to PDAC_B_DATA_CHIP[5]	;#GPIO_1[13]	;# DAC_B DATA5
+#  set_location_assignment PIN_R24  -to JP2_PIN16
+   ;# pin 17 (left)
+   set_location_assignment PIN_R20  -to PDAC_B_DATA_CHIP[6]	;#GPIO_1[14]	;# DAC_B DATA6
+#  set_location_assignment PIN_R20  -to JP2_PIN17
+   ;# pin 18 (right)
+   set_location_assignment PIN_T22  -to PDAC_B_DATA_CHIP[7]	;#GPIO_1[15]	;# DAC_B DATA7
+#  set_location_assignment PIN_T22  -to JP2_PIN18
+   ;# pin 19 (left)
+   set_location_assignment PIN_T23  -to ADC_DATA_CHIP[0]	;#GPIO_1[16]	;# ADC DATA0
+#  set_location_assignment PIN_T23  -to JP2_PIN19
+   ;# pin 20 (right)
+   set_location_assignment PIN_T24  -to ADC_DATA_CHIP[1]	;#GPIO_1[17]	;# ADC DATA1
+#  set_location_assignment PIN_T24  -to JP2_PIN20
+   ;# pin 21 (left)
+   set_location_assignment PIN_T25  -to ADC_DATA_CHIP[2]	;#GPIO_1[18]	;# ADC DATA2
+#  set_location_assignment PIN_T25  -to JP2_PIN21
+   ;# pin 22 (right)
+   set_location_assignment PIN_T18  -to ADC_DATA_CHIP[3]	;#GPIO_1[19]	;# ADC DATA3
+#  set_location_assignment PIN_T18  -to JP2_PIN22
+   ;# pin 23 (left)
+   set_location_assignment PIN_T21  -to ADC_DATA_CHIP[4]	;#GPIO_1[20]	;# ADC DATA4
+#  set_location_assignment PIN_T21  -to JP2_PIN23
+   ;# pin 24 (right)
+   set_location_assignment PIN_T20  -to ADC_DATA_CHIP[5]	;#GPIO_1[21]	;# ADC DATA5
+#  set_location_assignment PIN_T20  -to JP2_PIN24
+   ;# pin 25 (left)
+   set_location_assignment PIN_U26  -to ADC_DATA_CHIP[6]	;#GPIO_1[22]	;# ADC DATA6
+#  set_location_assignment PIN_U26  -to JP2_PIN25
+   ;# pin 26 (right)
+   set_location_assignment PIN_U25  -to ADC_DATA_CHIP[7]	;#GPIO_1[23]	;# ADC DATA7
+#  set_location_assignment PIN_U25  -to JP2_PIN26
+   ;# pin 27 (left)
+   set_location_assignment PIN_U23  -to CLK_ADC_CHIP		;#GPIO_1[24]	;# ADC CLOCK
+#  set_location_assignment PIN_U23  -to JP2_PIN27
+   ;# pin 28 (right)
+   set_location_assignment PIN_U24  -to ADC_POWERDOWNn_CHIP	;#GPIO_1[25]	;# ADC POWER DOWN
+#  set_location_assignment PIN_U24  -to JP2_PIN28
+
+   ;# pin 29 (left)  is VCC33
+   ;# pin 30 (right) is GND
+
+   ;# pin 31 (left)
+   set_location_assignment PIN_R19  -to CLK_PDACs_CHIP		;#GPIO_1[26]	;# PDACs CLOCK
+#  set_location_assignment PIN_R19  -to JP2_PIN31
+   ;# pin 32 (right)
+   set_location_assignment PIN_T19  -to DACs_POWERDOWNn_CHIP;#GPIO_1[27]	;# DACs POWER DOWN
+#  set_location_assignment PIN_T19  -to JP2_PIN32
+   ;# pin 33 (left)
+   set_location_assignment PIN_U20  -to SDACs_SDATA_CHIP	;#GPIO_1[28]	;# SERIAL DAC DATA
+#  set_location_assignment PIN_U20  -to JP2_PIN33
+   ;# pin 34 (right)
+   set_location_assignment PIN_U21  -to SDACs_SCLK_CHIP		;#GPIO_1[29]	;# SERIAL DAC CLOCK
+#  set_location_assignment PIN_U21  -to JP2_PIN32
+   ;# pin 35 (left)
+   set_location_assignment PIN_V26  -to SDACs_SLATCH_CHIP	;#GPIO_1[30]	;# SERIAL DAC LATCH
+#  set_location_assignment PIN_V26  -to JP2_PIN35
+   ;# pin 36 (right)
+   set_location_assignment PIN_V25  -to VOLTAGE_TRANSLATORS_ENAn_CHIP		;#GPIO_1[31]	;# VOLTAGE TRANSLATORS ENABLE
+#  set_location_assignment PIN_V25  -to JP2_PIN36
+   ;# pin 37 (left)
+   set_location_assignment PIN_V24  -to BIT_INPUT_MUX_CARD	;#GPIO_1[32]	;# INPUT/BIT SWITCH CONTROL
+   
+
+   ;# control signals
+set_location_assignment PIN_D13 -to CLOCK_27
+set_location_assignment PIN_N2 -to CLOCK_50
+set_location_assignment PIN_C8 -to VGA_R[0]
+set_location_assignment PIN_F10 -to VGA_R[1]
+set_location_assignment PIN_G10 -to VGA_R[2]
+set_location_assignment PIN_D9 -to VGA_R[3]
+set_location_assignment PIN_C9 -to VGA_R[4]
+set_location_assignment PIN_A8 -to VGA_R[5]
+set_location_assignment PIN_H11 -to VGA_R[6]
+set_location_assignment PIN_H12 -to VGA_R[7]
+set_location_assignment PIN_F11 -to VGA_R[8]
+set_location_assignment PIN_E10 -to VGA_R[9]
+set_location_assignment PIN_B9 -to VGA_G[0]
+set_location_assignment PIN_A9 -to VGA_G[1]
+set_location_assignment PIN_C10 -to VGA_G[2]
+set_location_assignment PIN_D10 -to VGA_G[3]
+set_location_assignment PIN_B10 -to VGA_G[4]
+set_location_assignment PIN_A10 -to VGA_G[5]
+set_location_assignment PIN_G11 -to VGA_G[6]
+set_location_assignment PIN_D11 -to VGA_G[7]
+set_location_assignment PIN_E12 -to VGA_G[8]
+set_location_assignment PIN_D12 -to VGA_G[9]
+set_location_assignment PIN_J13 -to VGA_B[0]
+set_location_assignment PIN_J14 -to VGA_B[1]
+set_location_assignment PIN_F12 -to VGA_B[2]
+set_location_assignment PIN_G12 -to VGA_B[3]
+set_location_assignment PIN_J10 -to VGA_B[4]
+set_location_assignment PIN_J11 -to VGA_B[5]
+set_location_assignment PIN_C11 -to VGA_B[6]
+set_location_assignment PIN_B11 -to VGA_B[7]
+set_location_assignment PIN_C12 -to VGA_B[8]
+set_location_assignment PIN_B12 -to VGA_B[9]
+set_location_assignment PIN_B8 -to VGA_CLK
+set_location_assignment PIN_D6 -to VGA_BLANK
+set_location_assignment PIN_A7 -to VGA_HS
+set_location_assignment PIN_D8 -to VGA_VS
+set_location_assignment PIN_B7 -to VGA_SYNC
+
+  
+
+   set_location_assignment PIN_D26 -to KBD_CLK
+   set_location_assignment PIN_C24 -to KBD_DAT
+
+   set_global_assignment -name FAMILY "Cyclone II"
+   set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+   set_global_assignment -name DEVICE_FILTER_PIN_COUNT 672
+   set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 6
+
+   set_global_assignment -name DEVICE "EP2C35F672C6"
+
+   set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+
+
+   puts " And making connections safe"
+   puts "============================="
+} else {
+   puts "==============================================="
+   puts "ERROR: Can not assign pins and make them safe,"
+   puts "       Because there is not any open project ! "
+   puts "===============================================" }
